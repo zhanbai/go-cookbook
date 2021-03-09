@@ -20,6 +20,15 @@ func substr() {
 	fmt.Println("watch out for that tree"[17:])
 }
 
+// 1.3 替换子串
+func substrReplace() {
+	str := "My pet is a blue dog."
+	fmt.Println(strings.Replace(str, str[12:], "fish.", 1))
+	fmt.Println(strings.Replace(str, str[12:16], "green", 1))
+	creditCard := "4111 1111 1111 1111"
+	fmt.Println(strings.Replace(creditCard, creditCard[0:len(creditCard)-4], "xxxx ", 1))
+}
+
 func main() {
 	stringIndex()
 	substr()
