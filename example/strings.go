@@ -57,7 +57,7 @@ func strstr(haystack string, needle string) string {
 func forLookandsay()  {
 	s := strconv.Itoa(1)
 	fmt.Println(s)
-	
+
 	for i := 0; i < 10; i++ {
 		s = lookandsay(s)
 		fmt.Println(s)
@@ -90,10 +90,45 @@ func lookandsay(s string) string {
 	return r + strconv.Itoa(n) + m
 }
 
+// 1.5 按单词或字节反转字符串
+func revStr()  {
+	fmt.Println(strrev("This is not a palindrome."))
+}
+
+func strrev(s string) string {
+	n := len(s)
+	runes := make([]rune, n)
+	for _, rune := range s {
+		n--
+		runes[n] = rune
+	}	
+	return string(runes[n:])
+}
+
+func revArr()  {
+	s := "Once upon a time there was a turtle."
+	// 将字符串分解为单词
+	words := strings.Split(s, " ")
+	// 反转单词数组
+	words = arrayReverse(words)
+	s = strings.Join(words, " ")
+	fmt.Println(s)
+}
+
+// 反转单词数组
+func arrayReverse(s []string) []string {
+	for i, j := 0, len(s) - 1; i < j; i, j = i + 1, j - 1 {
+		s[i], s[j] = s[j], s[i]
+	} 
+	return s
+}
+
 func main() {
 	// stringIndex()
 	// substr()
 	// substrReplace()
 	// forStr()
-	forLookandsay()
+	// forLookandsay()
+	// revStr()
+	revArr()
 }
