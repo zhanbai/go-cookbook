@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"strconv"
 	"strings"
+	"time"
 )
 
 // 1.1 访问子串
@@ -54,7 +56,7 @@ func strstr(haystack string, needle string) string {
 }
 
 // Look and Say 序列
-func forLookandsay()  {
+func forLookandsay() {
 	s := strconv.Itoa(1)
 	fmt.Println(s)
 
@@ -69,7 +71,7 @@ func lookandsay(s string) string {
 	r := ""
 	// m 包含要统计的字符，初始化为字符串中的第一个字符
 	m := s[0:1]
-	
+
 	// n 是已经查看过的 m 个数，初始化为 1
 	n := 1
 	for i := 1; i < len(s); i++ {
@@ -81,7 +83,7 @@ func lookandsay(s string) string {
 			// 否则，将字符个数和字符本身增加到返回值
 			r += strconv.Itoa(n) + m
 			// 将要查找的字符设置为当前字符
-			m = s[i:i+1]
+			m = s[i : i+1]
 			// 并将字符个数重置为 1
 			n = 1
 		}
@@ -91,7 +93,7 @@ func lookandsay(s string) string {
 }
 
 // 1.5 按单词或字节反转字符串
-func revStr()  {
+func revStr() {
 	fmt.Println(strrev("This is not a palindrome."))
 }
 
@@ -101,11 +103,11 @@ func strrev(s string) string {
 	for _, rune := range s {
 		n--
 		runes[n] = rune
-	}	
+	}
 	return string(runes[n:])
 }
 
-func revArr()  {
+func revArr() {
 	s := "Once upon a time there was a turtle."
 	// 将字符串分解为单词
 	words := strings.Split(s, " ")
@@ -117,9 +119,31 @@ func revArr()  {
 
 // 反转单词数组
 func arrayReverse(s []string) []string {
-	for i, j := 0, len(s) - 1; i < j; i, j = i + 1, j - 1 {
+	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
 		s[i], s[j] = s[j], s[i]
-	} 
+	}
+	return s
+}
+
+// 1.6 生成随机字符串
+func genStrRand() {
+	length := 32
+	characters := "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	fmt.Println(strRand(length, characters))
+}
+
+func strRand(length int, characters string) string {
+	if length < 0 {
+		return ""
+	}
+	charactersLength := len(characters)
+	fmt.Println(charactersLength)
+	s := ""
+	for i := length; i > 0; i-- {
+		r := rand.New(rand.NewSource(time.Now().UnixNano()))
+		randNum := r.Intn(charactersLength)
+		s += string(characters[randNum : randNum+1])
+	}
 	return s
 }
 
@@ -130,5 +154,7 @@ func main() {
 	// forStr()
 	// forLookandsay()
 	// revStr()
-	revArr()
+	// revArr()
+	genStrRand()
+	// fmt.Println(strRand(16, ".-"))
 }
